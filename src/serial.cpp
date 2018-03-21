@@ -22,7 +22,7 @@ namespace create {
     using namespace boost::asio;
     port.open(portName);
     port.set_option(serial_port::baud_rate(baud));
-    port.set_option(serial_port::flow_control(serial_port::flow_control::none));
+    port.set_option(serial_port::flow_control(serial_port::flow_control::hardware));
 
     usleep(1000000);
 
