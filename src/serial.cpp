@@ -32,6 +32,7 @@ namespace create {
     //port.set_option(serial_port::flow_control(serial_port::flow_control::hardware));
     port.set_option(serial_port::flow_control(serial_port::flow_control::none));
 
+    // HCL: Create 2 does not seem to reply in hardware control mode :-( 
     //https://github.com/boostorg/asio/issues/65
     //https://stackoverflow.com/questions/28274367/how-to-make-boostasioserial-port-baseflow-control-use-hardware-flow-contro
     // https://sourceware.org/ml/libc-help/2011-04/msg00038.html
