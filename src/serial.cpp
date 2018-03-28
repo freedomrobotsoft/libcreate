@@ -21,9 +21,14 @@ namespace create {
   bool Serial::connect(const std::string& portName, const int& baud, boost::function<void()> cb) {
     using namespace boost::asio;
     port.open(portName);
+    usleep(1000000);
     port.set_option(serial_port::baud_rate(baud));
+    usleep(1000000);
     port.set_option(serial_port::flow_control(serial_port::flow_control::hardware));
     //port.set_option(serial_port::flow_control(serial_port::flow_control::none));
+
+
+    //port.set_option(boost::asio::serial_port::flow_control(boost::asio::serial_port::flow_control::hardware));
 
     usleep(1000000);
 
