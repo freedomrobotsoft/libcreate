@@ -300,13 +300,12 @@ namespace create {
 
     keepAlive();
 
-    serial->sendOpcode(OC_STOP);
-    usleep( 1 * 1000000 );
-    serial->sendOpcode(OC_START);
-    usleep( 1 * 1000000 );
+
     serial->sendOpcode(OC_RESET);
-    usleep( 2 * 1000000 );
+    usleep( 1 * 1000000 );
+
     serial->sendOpcode(OC_START);
+    usleep( 1 * 1000000 );
 
     keepAlive();
 
