@@ -92,6 +92,10 @@ namespace create {
       bool sendOpcode(const Opcode& code);
       uint64_t getNumCorruptPackets() const;
       uint64_t getTotalPackets() const;
+
+      // HCL ADDED
+      void setRTS(bool enabled);
+      void setDTR(bool enabled);
   };
 }  // namespace create
 

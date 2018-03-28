@@ -296,7 +296,10 @@ namespace create {
   }
 
   void Create::resetConnection() {
-    CERR("[create:reset]","Resetting connection with Op Codes");
+    CERR("[create:reset]","Resetting connection with Op Codes and RTS pin toggles");
+
+    keepAlive();
+
     serial->sendOpcode(OC_STOP);
     usleep( 1 * 1000000 );
     serial->sendOpcode(OC_START);
@@ -304,6 +307,9 @@ namespace create {
     serial->sendOpcode(OC_RESET);
     usleep( 2 * 1000000 );
     serial->sendOpcode(OC_START);
+
+    keepAlive();
+
     CERR("[create:reset]","Resetting connection complete");
 
     // HCL We could instead do this or even add it at the end
@@ -311,6 +317,19 @@ namespace create {
     // usleep( 1 * 1000000 );
     // serial->connect( );
 
+  }
+
+  // HCL
+  // In Passive mode, Roomba will go into power saving mode to conserve battery power after five minutes of
+  // inactivity. To disable sleep, pulse the BRC pin low periodically before these five minutes expire. Each
+  // pulse resets this five minute counter. (One example that would not cause the baud rate to inadvertently
+  // change is to pulse the pin low for one second, every minute, but there are other periods and duty cycles
+  // that would work, as well.) 
+  
+  void Create::keepAlive() {
+    serial->setRTS(false);
+    usleep( 1 * 1000000 );
+    serial->setRTS(true);
   }
 
   bool Create::setMode(const CreateMode& mode) {

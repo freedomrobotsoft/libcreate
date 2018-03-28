@@ -150,6 +150,13 @@ namespace create {
        */
       void resetConnection();
 
+      /** 
+       *
+       * Toggles the pin to keep the roomba talking
+       *
+       */
+      void keepAlive();
+
       /**
        * \brief Change Create mode.
        * \param mode to change Create to.

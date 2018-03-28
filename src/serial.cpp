@@ -1,7 +1,7 @@
 
-#define _GNU_SOURCE
+//#define _GNU_SOURCE
 #define _BSD_SOURCE
-#define _SVID_SOURCE
+//#define _SVID_SOURCE
 
 #include <iostream>
 
@@ -188,5 +188,34 @@ namespace create {
 
   uint64_t Serial::getTotalPackets() const {
     return totalPackets;
+  }
+
+
+  // In Passive mode, Roomba will go into power saving mode to conserve battery power after five minutes of
+  // inactivity. To disable sleep, pulse the BRC pin low periodically before these five minutes expire. Each
+  // pulse resets this five minute counter. (One example that would not cause the baud rate to inadvertently
+  // change is to pulse the pin low for one second, every minute, but there are other periods and duty cycles
+  // that would work, as well.) 
+
+  // This directly sets the pins up and down 
+  //https://stackoverflow.com/questions/30618678/boostasioserial-port-set-rts-dts
+  void Serial::setRTS(bool enabled)
+  {
+      int fd = port.native_handle();
+      int data = TIOCM_RTS;
+      if (!enabled)
+          ioctl(fd, TIOCMBIC, &data);        
+      else
+          ioctl(fd, TIOCMBIS, &data);
+  }
+
+  void Serial::setDTR(bool enabled)
+  {
+      int fd = port.native_handle();
+      int data = TIOCM_DTR;
+      if (!enabled)
+          ioctl(fd, TIOCMBIC, &data);        // Clears the RTS pin
+      else
+          ioctl(fd, TIOCMBIS, &data);        // Sets the RTS pin
   }
 } // namespace create
