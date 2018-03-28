@@ -145,6 +145,12 @@ namespace create {
       void disconnect();
 
       /**
+       *
+       * \brief HCL Added: Does a software reset and reconnect
+       */
+      void resetConnection();
+
+      /**
        * \brief Change Create mode.
        * \param mode to change Create to.
        * \return true if successful, false otherwise

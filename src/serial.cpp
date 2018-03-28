@@ -93,6 +93,9 @@ namespace create {
 
         // Request data again
         sendOpcode(OC_START);
+
+        // HCL We could do a restart here also
+
         startSensorStream();
       }
     }
@@ -103,6 +106,8 @@ namespace create {
 
   void Serial::stopReading() {
     if (isReading) {
+      sendOpcode(OC_STOP); // HCL ADDED
+
       io.stop();
       ioThread.join();
       isReading = false;
