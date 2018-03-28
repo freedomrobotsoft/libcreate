@@ -65,10 +65,6 @@ namespace create {
     disconnect();
   }
 
-  Create::reset() {
-
-  }
-
   Create::Matrix Create::addMatrices(const Matrix &A, const Matrix &B) const {
     int rows = A.size1();
     int cols = A.size2();
@@ -300,7 +296,7 @@ namespace create {
   }
 
   void Create::resetConnection() {
-    CERR("[create:reset] Resetting connection with Op Codes");
+    CERR("[create:reset]","Resetting connection with Op Codes");
     serial->sendOpcode(OC_STOP);
     usleep( 1 * 1000000 );
     serial->sendOpcode(OC_START);
@@ -308,7 +304,7 @@ namespace create {
     serial->sendOpcode(OC_RESET);
     usleep( 2 * 1000000 );
     serial->sendOpcode(OC_START);
-    CERR("[create:reset] Resetting connection complete");
+    CERR("[create:reset]","Resetting connection complete");
 
     // HCL We could instead do this or even add it at the end
     // serial->disconnect( );
