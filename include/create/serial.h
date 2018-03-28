@@ -76,7 +76,6 @@ namespace create {
       uint64_t corruptPackets;
       uint64_t totalPackets;
 
-      virtual bool startSensorStream() = 0;
       virtual void processByte(uint8_t byteRead) = 0;
 
       // Notifies main thread that data is fresh and makes the user callback
@@ -96,6 +95,10 @@ namespace create {
       // HCL ADDED
       void setRTS(bool enabled);
       void setDTR(bool enabled);
+
+      // HCL Moved from protected
+      virtual bool startSensorStream() = 0;
+
   };
 }  // namespace create
 

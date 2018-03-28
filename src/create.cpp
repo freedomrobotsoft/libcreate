@@ -309,6 +309,9 @@ namespace create {
 
     keepAlive();
 
+    // Start sending it again
+    serial->startSensorStream();
+
     CERR("[create:reset]","Resetting connection complete");
 
     // HCL We could instead do this or even add it at the end
