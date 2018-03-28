@@ -1,3 +1,8 @@
+
+#define _GNU_SOURCE
+#define _BSD_SOURCE
+#define _SVID_SOURCE
+
 #include <iostream>
 
 #include "create/serial.h"
@@ -27,6 +32,8 @@ namespace create {
     port.set_option(serial_port::flow_control(serial_port::flow_control::hardware));
     //port.set_option(serial_port::flow_control(serial_port::flow_control::none));
 
+    //https://github.com/boostorg/asio/issues/65
+    //https://stackoverflow.com/questions/28274367/how-to-make-boostasioserial-port-baseflow-control-use-hardware-flow-contro
 
     //port.set_option(boost::asio::serial_port::flow_control(boost::asio::serial_port::flow_control::hardware));
 
