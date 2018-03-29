@@ -304,17 +304,18 @@ namespace create {
 
     CERR("[create:reset]", "    Sending OC_RESET");
     serial->sendOpcode(OC_RESET);
-    usleep( 6 * 1000000 );
+    usleep(8 * 1000000 );
 
     CERR("[create:reset]", "    Sending OC_START");
     serial->sendOpcode(OC_START);
-    usleep( 5 * 1000000 );
+    usleep( 8 * 1000000 );
 
     CERR("[create:reset]", "    Stopping serial reading");
     serial->stopReading();
-    usleep( 1 * 1000000 );
+    usleep( 5 * 1000000 );
 
     // Start sending it again
+    CERR("[create:reset]", "    Restarting serial reading");
     serial->startReading();
 
     usleep( 1 * 1000000 );
@@ -339,7 +340,7 @@ namespace create {
   void Create::keepAlive() {
     CERR("[create:keep alive]","        Triggering RTS pin false then true");
     serial->setRTS(false);
-    usleep( 1 * 1000000 );
+    usleep( 1000000 / 2 );
     serial->setRTS(true);
   }
 
