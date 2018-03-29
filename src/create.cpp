@@ -300,6 +300,7 @@ namespace create {
 
     keepAlive();
 
+    serial->stopReading();
 
     serial->sendOpcode(OC_RESET);
     usleep( 1 * 1000000 );
@@ -310,7 +311,7 @@ namespace create {
     keepAlive();
 
     // Start sending it again
-    serial->startSensorStream();
+    serial->startReading();
 
     CERR("[create:reset]","Resetting connection complete");
 

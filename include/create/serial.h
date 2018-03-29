@@ -66,9 +66,6 @@ namespace create {
       void onData(const boost::system::error_code& e, const std::size_t& size);
       // Callback to execute once data arrives
       boost::function<void()> callback;
-      // Start and stop reading data from Create
-      bool startReading();
-      void stopReading();
 
     protected:
       boost::shared_ptr<Data> data;
@@ -98,6 +95,8 @@ namespace create {
 
       // HCL Moved from protected
       virtual bool startSensorStream() = 0;
+      bool startReading();
+      void stopReading();
 
   };
 }  // namespace create
