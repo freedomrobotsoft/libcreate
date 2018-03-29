@@ -302,37 +302,29 @@ namespace create {
 
     usleep( 1 * 1000000 );
 
+    CERR("[create:reset]", "    Sending OC_RESET");
+    serial->sendOpcode(OC_RESET);
+    usleep( 4 * 1000000 );
+
     CERR("[create:reset]", "    Sending OC_START");
     serial->sendOpcode(OC_START);
-    usleep( 3 * 1000000 );
+    usleep( 4 * 1000000 );
 
     CERR("[create:reset]", "    Stopping serial reading");
     serial->stopReading();
     usleep( 1 * 1000000 );
 
-    CERR("[create:reset]", "    Sending OC_RESET");
-    serial->sendOpcode(OC_RESET);
-    usleep( 4 * 1000000 );
-
     CERR("[create:reset]", "    Sending Serial RTS Keep Alive Toggle");
     keepAlive();
     usleep( 1 * 1000000 );
 
-    CERR("[create:reset]", "    Sending OC_START");
-    serial->sendOpcode(OC_START);
-    usleep( 4 * 1000000 );
-
-    CERR("[create:reset]", "    Sending another Serial RTS Keep Alive Toggle");
-    keepAlive();
-
-    usleep( 1 * 1000000 );
     // Start sending it again
     serial->startReading();
 
-    usleep( 4 * 1000000 );
+    usleep( 1 * 1000000 );
     keepAlive();
 
-    CERR("[create:reset]","  Resetting connection complete");
+    CERR("[create:reset]","    Resetting connection complete");
 
     // HCL We could instead do this or even add it at the end
     // serial->disconnect( );
@@ -349,7 +341,7 @@ namespace create {
   // that would work, as well.) 
   
   void Create::keepAlive() {
-    CERR("[create:keep alive]","Triggering RTS pin false then true");
+    CERR("[create:keep alive]","        Triggering RTS pin false then true");
     serial->setRTS(false);
     usleep( 1 * 1000000 );
     serial->setRTS(true);
