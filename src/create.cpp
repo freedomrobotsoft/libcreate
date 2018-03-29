@@ -308,7 +308,7 @@ namespace create {
 
     CERR("[create:reset]", "    Sending OC_START");
     serial->sendOpcode(OC_START);
-    usleep( 8 * 1000000 );
+    usleep( 2 * 1000000 );
 
     CERR("[create:reset]", "    Stopping serial reading");
     serial->stopReading();
