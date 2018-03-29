@@ -300,6 +300,12 @@ namespace create {
 
     keepAlive();
 
+    usleep( 1 * 1000000 );
+
+    CERR("[create:reset]", "    Sending OC_START");
+    serial->sendOpcode(OC_START);
+    usleep( 3 * 1000000 );
+
     CERR("[create:reset]", "    Stopping serial reading");
     serial->stopReading();
     usleep( 1 * 1000000 );
@@ -310,12 +316,11 @@ namespace create {
 
     CERR("[create:reset]", "    Sending Serial RTS Keep Alive Toggle");
     keepAlive();
-
     usleep( 1 * 1000000 );
 
     CERR("[create:reset]", "    Sending OC_START");
     serial->sendOpcode(OC_START);
-    usleep( 1 * 1000000 );
+    usleep( 4 * 1000000 );
 
     CERR("[create:reset]", "    Sending another Serial RTS Keep Alive Toggle");
     keepAlive();
@@ -324,7 +329,7 @@ namespace create {
     // Start sending it again
     serial->startReading();
 
-    usleep( 1 * 1000000 );
+    usleep( 4 * 1000000 );
     keepAlive();
 
     CERR("[create:reset]","  Resetting connection complete");
