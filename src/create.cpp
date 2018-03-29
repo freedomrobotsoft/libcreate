@@ -300,20 +300,34 @@ namespace create {
 
     keepAlive();
 
+    CERR("[create:reset]", "    Stopping serial reading");
     serial->stopReading();
-
-    serial->sendOpcode(OC_RESET);
     usleep( 1 * 1000000 );
 
+    CERR("[create:reset]", "    Sending OC_RESET");
+    serial->sendOpcode(OC_RESET);
+    usleep( 4 * 1000000 );
+
+    CERR("[create:reset]", "    Sending Serial RTS Keep Alive Toggle");
+    keepAlive();
+
+    usleep( 1 * 1000000 );
+
+    CERR("[create:reset]", "    Sending OC_START");
     serial->sendOpcode(OC_START);
     usleep( 1 * 1000000 );
 
+    CERR("[create:reset]", "    Sending another Serial RTS Keep Alive Toggle");
     keepAlive();
 
+    usleep( 1 * 1000000 );
     // Start sending it again
     serial->startReading();
 
-    CERR("[create:reset]","Resetting connection complete");
+    usleep( 1 * 1000000 );
+    keepAlive();
+
+    CERR("[create:reset]","  Resetting connection complete");
 
     // HCL We could instead do this or even add it at the end
     // serial->disconnect( );
