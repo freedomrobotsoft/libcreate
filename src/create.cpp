@@ -340,7 +340,7 @@ namespace create {
   void Create::keepAlive() {
     //CERR("[create:keep alive]","        Triggering RTS pin false then true");
     serial->setRTS(false);
-    usleep( 1000000 / 2 );
+    usleep( 1000000 );
     serial->setRTS(true);
   }
 
