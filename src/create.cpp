@@ -306,9 +306,11 @@ namespace create {
     serial->sendOpcode(OC_RESET);
     usleep(6 * 1000000 );
 
-    CERR("[create:reset]", "    Sending OC_START");
-    serial->sendOpcode(OC_START);
-    usleep( 2 * 1000000 );
+    CERR("[create:reset]", "    Restarting Sensor Stream");
+    //serial->sendOpcode(OC_START);
+    //usleep( 2 * 1000000 );
+
+    serial->startSensorStream();
 
     //CERR("[create:reset]", "    Stopping serial reading");
     //serial->stopReading();
