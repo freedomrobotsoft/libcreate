@@ -310,16 +310,16 @@ namespace create {
     serial->sendOpcode(OC_START);
     usleep( 2 * 1000000 );
 
-    CERR("[create:reset]", "    Stopping serial reading");
-    serial->stopReading();
-    usleep( 2 * 1000000 );
+    //CERR("[create:reset]", "    Stopping serial reading");
+    //serial->stopReading();
+    //usleep( 2 * 1000000 );
 
     // Start sending it again
-    CERR("[create:reset]", "    Restarting serial reading");
-    serial->startReading();
+    //CERR("[create:reset]", "    Restarting serial reading");
+    //serial->startReading();
 
-    usleep( 1 * 1000000 );
-    keepAlive();
+    //usleep( 1 * 1000000 );
+    //keepAlive();
 
     CERR("[create:reset]","    Resetting connection complete");
 
